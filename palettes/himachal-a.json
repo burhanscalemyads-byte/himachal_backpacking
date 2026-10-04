@@ -1,0 +1,20 @@
+{
+  "name": "Himachal A · Snowline",
+  "id": "himachal-a",
+  "roles": {
+    "ground": "#DCE6EB",
+    "ground-soft": "#EEF3F6",
+    "ink": "#0F2933",
+    "text": "#46606B",
+    "line": "#D3DEE3",
+    "accent": "#F5B53F",
+    "on-accent": "#0F2933",
+    "alert": "#A3261B",
+    "alert-soft": "#F7DEDA"
+  },
+  "sky": [
+    "#4E80A8",
+    "#8DB5D3",
+    "#D9E7EF"
+  ]
+}

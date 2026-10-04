@@ -1,0 +1,20 @@
+{
+  "name": "Himachal B · Kullu shawl",
+  "id": "himachal-b",
+  "roles": {
+    "ground": "#EEE4D3",
+    "ground-soft": "#F7F1E7",
+    "ink": "#2C1323",
+    "text": "#62505A",
+    "line": "#E5DACA",
+    "accent": "#C93468",
+    "on-accent": "#FFFFFF",
+    "alert": "#8F3A0E",
+    "alert-soft": "#F6E1D3"
+  },
+  "sky": [
+    "#6E8FB3",
+    "#A7BFD6",
+    "#E3E6EA"
+  ]
+}

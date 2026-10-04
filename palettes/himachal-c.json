@@ -1,0 +1,20 @@
+{
+  "name": "Himachal C · Deodar dusk",
+  "id": "himachal-c",
+  "roles": {
+    "ground": "#E2E0EC",
+    "ground-soft": "#F1F0F6",
+    "ink": "#191B3B",
+    "text": "#535470",
+    "line": "#DAD8E5",
+    "accent": "#FF9F45",
+    "on-accent": "#191B3B",
+    "alert": "#A3261B",
+    "alert-soft": "#F7DEDA"
+  },
+  "sky": [
+    "#5C6FA8",
+    "#9AA6CF",
+    "#E0E2EF"
+  ]
+}
