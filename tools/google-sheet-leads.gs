@@ -1,6 +1,6 @@
 /** @OnlyCurrentDoc */
 /*
- * Glabol Kashmir landing page → Google Sheet
+ * Glabol landing pages (Kashmir, Himachal and the next ones) → one Google Sheet
  * Every enquiry becomes a row in the sheet, and you get an email alert for each one.
  * The thank-you page then asks 3 qualifying questions; the answers and a lead quality
  * (Hot / Warm / Cold) are added to the same row.
@@ -231,11 +231,17 @@ function sendAlert_(lead) {
       `Lead quality and answers appear in the sheet if they answer the questions on the thank-you page.`,
       `All leads: ${SpreadsheetApp.getActiveSpreadsheet().getUrl()}`,
     ].join("\n");
-    MailApp.sendEmail({ to, subject: `New Kashmir lead: ${lead.name} (${lead.month})`, body, name: "Glabol leads" });
+    MailApp.sendEmail({ to, subject: `New ${destinationOf_(lead)} lead: ${lead.name} (${lead.month})`, body, name: "Glabol leads" });
   } catch (err) {
     // e.g. Gmail's daily limit (100 alerts a day on a free account). The lead is already saved.
     console.error("Email alert failed", err);
   }
+}
+
+// The trip a lead came from, from its page address: kashmir.glabol.com → "Kashmir"
+function destinationOf_(lead) {
+  const m = /^https?:\/\/([a-z-]+)\.glabol\.com/i.exec(lead.landing_url || "");
+  return m && m[1].toLowerCase() !== "www" ? m[1].charAt(0).toUpperCase() + m[1].slice(1) : "trip";
 }
 
 function forwardToCrm_(lead) {

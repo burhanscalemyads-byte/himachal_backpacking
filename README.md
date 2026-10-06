@@ -2,7 +2,7 @@
 
 The Himachal Backpacking Trip page, built from the Kashmir page and the "Glabol Trip Pages" design system. It has the same structure, form, Google Sheet, Glabol CRM and GTM tracking as Kashmir; only the content and colours change.
 
-**Status: content complete, waiting for launch details.** Every trip fact is in. What's left reads "TBC" on the page (three reviews, the rating check, the subdomain and the `noindex` line), and `python3 tools/build-zip.py` lists them and refuses to build while any remain.
+**Status: ready to launch on himachal.glabol.com.** Every fact is in, the build check passes and the page is indexable. The reviews section is hidden until there are three real reviews (see below). The rating, 4.5/5 from 1,685 reviews, is the owner's and covers Himachal.
 
 ```
 index.html       the landing page
@@ -39,14 +39,13 @@ The trip details come from the brochure **THE GREAT HIMACHAL TOUR - GLABOL INDIA
 
 **No phone numbers on the page, by choice.** The brochure cover carries two numbers; they're left off so every enquiry goes through the form.
 
-## Before launch
+## Launch and after
 
-- **Reviews:** three real reviews from Himachal travellers (name, city, month).
-- **Rating:** confirm that 4.5/5 from 1,685 reviews covers Himachal too.
-- **Colours:** pick palette A, B or C below (A is applied).
-- **Address:** the subdomain (himachal.glabol.com is assumed; the Glabol CRM already accepts it) and the GitHub repo to publish from.
-- **Sheet email alerts:** the shared Apps Script's subject line says "New Kashmir lead" for every lead. Update it to name the destination (a one-line change, then Deploy → Manage deployments → New version).
-- Then delete the `noindex` line and the draft note, run `python3 tools/build-zip.py` until it builds, and take screenshots at 390, 820, 1280, 1440 and 1920px.
+1. **GitHub Pages:** in the repo, Settings → Pages → Source "Deploy from a branch", branch `main`, folder `/ (root)`. The `CNAME` file sets the custom domain, himachal.glabol.com.
+2. **Cloudflare DNS:** add a CNAME record `himachal` → `burhanscalemyads-byte.github.io`, proxied (orange cloud), the same as kashmir.glabol.com.
+3. **Sheet email alerts:** paste the updated `tools/google-sheet-leads.gs` into the Apps Script, Save, then Deploy → Manage deployments → pencil → Version "New version" → Deploy. The subject then names the trip from the page address ("New Himachal lead", "New Kashmir lead") instead of always saying Kashmir. The web app URL stays the same.
+4. **Reviews:** when you have three real reviews from Himachal travellers (name, city, month), paste them into the commented-out reviews section in `index.html` and put it back between the batches and the FAQ. Never invent them: ad platforms and consumer rules treat made-up testimonials as misleading.
+5. **Colours:** palette A (Snowline) is applied; B or C can be swapped in any time with `tools/palette.py`.
 
 ## Colours (palettes)
 
