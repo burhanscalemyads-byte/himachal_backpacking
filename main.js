@@ -62,9 +62,17 @@ const attribution = (() => {
 (function matchHeadline() {
   const term = (params.get("kw") || params.get("utm_term") || "").toLowerCase();
   if (!term) return;
-  // TBC: lines from the brochure for solo, budget, group, the main places and each boarding city, e.g.
-  //   [/solo|alone|single/, "Going solo? Join a group of 18–35 year olds for … nights in Himachal."],
-  const rules = [];
+  const rules = [
+    [/solo|alone|single/, "Going solo? Join a group of 18–35 year olds for seven days in Himachal."],
+    [/budget|cheap|low cost|affordable|under/, "₹12,000 from Delhi: Volvo both ways, stays, breakfasts, dinners, rafting and GST."],
+    [/group|friends|college/, "Seven days in Himachal with a group of 18–35 year olds, from Delhi and back."],
+    [/\bbir\b|billing|paraglid/, "Bir Billing, known for paragliding, plus Manali, Solang Valley and Kasol."],
+    [/raft|kullu/, "River rafting in Kullu is included, plus Manali, Solang Valley and Kasol."],
+    [/kasol|parvati|manikaran/, "Kasol and Manikaran in the Parvati Valley, plus Manali, Bir and Dharamshala."],
+    [/dharamshala|dharamsala|mcleod|dalai|bhagsu/, "Dharamshala and McLeodganj, then Bir, Manali, Solang Valley and Kasol."],
+    [/manali|solang|atal/, "Manali, Solang Valley and the Atal Tunnel, plus Dharamshala, Bir and Kasol."],
+    [/delhi/, "Seven days from Delhi, with the Volvo both ways, stays and meals included."],
+  ];
   const match = rules.find(([re]) => re.test(term));
   const sub = document.getElementById("hero-sub");
   if (match && sub) sub.textContent = match[1];

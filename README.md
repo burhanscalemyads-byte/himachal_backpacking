@@ -2,7 +2,7 @@
 
 The Himachal Backpacking Trip page, built from the Kashmir page and the "Glabol Trip Pages" design system. It has the same structure, form, Google Sheet, Glabol CRM and GTM tracking as Kashmir; only the content and colours change.
 
-**Status: draft.** The structure is ready, but the trip facts wait for the Himachal brochure and photos. Every gap reads "TBC" on the page, and `python3 tools/build-zip.py` lists them all and refuses to build while any remain. The page also carries `noindex` until launch.
+**Status: content complete, waiting for launch details.** Every trip fact is in. What's left reads "TBC" on the page (three reviews, the rating check, the subdomain and the `noindex` line), and `python3 tools/build-zip.py` lists them and refuses to build while any remain.
 
 ```
 index.html       the landing page
@@ -12,32 +12,41 @@ palette.css      this destination's colours, generated from palettes/himachal-a.
 site.js          settings (sheet URL, CRM, DESTINATION = "Himachal") and the events GTM listens for
 main.js          landing page: form, ad attribution, keyword headlines, altitude chart, batches
 thank-you.js     the qualifying questions and the Hot / Warm / Cold rule
-images/          the photos (only the Glabol logo so far)
+images/          the photos
 ```
 
-## 1. Before launch
+## 1. Content
 
-From the **Himachal brochure**:
-- the day-by-day itinerary: day cards (titles, text, altitude) and, if the trip climbs, the altitude chart with one stop per day (uncomment it in the route section);
-- nights, highlights and the supporting line under the headline;
-- prices per person, boarding and drop points, and the second option if there is one: title, meta tags, structured data, hero facts, price box, FAQ and the thank-you budget question;
-- inclusions, exclusions, packing list, payment terms, terms and cancellation policy (the terms are Kashmir's for now; check they're the same);
-- every batch date: one `<li data-start="YYYY-MM-DD">` row each in the batches section. Past batches hide themselves, the next six show and the hero's "next batch" fills in on its own;
-- the four proof figures, the FAQ answers and the keyword lines in `matchHeadline()` (`main.js`).
+The trip details come from the brochure **THE GREAT HIMACHAL TOUR - GLABOL INDIA.pdf** (Oct 2026) and the tour page https://glabol.com/tour/the-great-himachal-tour-85:
+- the 7-day Delhi-to-Delhi itinerary: Dharamshala and McLeodganj, Bir Billing, Kullu rafting and Manali, the Atal Tunnel and Solang Valley, Kasol and Manikaran;
+- inclusions, exclusions, notes, the packing list, terms and cancellation policy;
+- all 33 batches, Tuesday to Monday, 29 Sep 2026 to 31 May 2027 (none in the last two weeks of December).
 
-From **you**:
-- **Photos.** See section 2.
-- **Rating.** Confirm that 4.5/5 from 1,685 reviews covers Himachal too.
-- **Reviews.** Three real reviews from Himachal travellers (name, city, month).
-- **Colours.** Pick one of the three palettes below.
-- **Address.** The subdomain (himachal.glabol.com is assumed; the Glabol CRM already accepts it) and the GitHub repo to publish from.
+**Price:** ₹12,000 per person, Delhi to Delhi, GST included (the owner's figure). By the owner's choice the page says nothing about room types or sharing; the landing test fails if "double", "sharing", "room", "triple" or "quad" appears. The tour page's struck-through ₹17,000 and its seat counts are left out, and so is the booking amount, as on Kashmir.
 
-Then:
-- **Sheet email alerts:** the shared Apps Script's subject line says "New Kashmir lead" for every lead. Update it to name the destination (a one-line change, then Deploy → Manage deployments → New version);
-- delete the `noindex` line and the draft note;
-- run `python3 tools/build-zip.py` until it builds;
-- take screenshots at 390, 820, 1280, 1440 and 1920px;
-- send one test enquiry through a local copy, never the live page, so no real conversion fires.
+**Altitudes on the chart** are the published figures (Wikipedia): Delhi 216 m, McLeodganj 2,082 m, Bir 1,525 m, Manali 2,050 m, Atal Tunnel 3,000 m (3,000–3,100 m), Kasol 1,580 m.
+
+**Batches update themselves.** Each visitor's browser hides every batch whose start date has arrived (India time), marks the next one "Next batch" and puts its date in the hero. After the last batch the page says "Soon". For next season, add rows: one `<li data-start="YYYY-MM-DD">` per batch.
+
+**Brochure details worth checking:** Day 2 says check-in is at 11 AM, the notes say 12 PM, so the page only says early check-in depends on availability. The brochure's "ISO 1900:2015" is shown as ISO 9001:2015, as on Kashmir.
+
+| Item | Where |
+|---|---|
+| Price ₹12,000 | `<title>`, meta and og tags, JSON-LD offer, hero facts bar, price box, keyword line for budget searches (`main.js`); budget question (`thank-you.html`) |
+| Rating 4.5/5 from 1,685 reviews | hero rating line and reviews heading (confirm it covers Himachal) |
+| Day-by-day plan | route section: the chart's `data-stops` (one stop per day, with altitude) and the day cards |
+| Batch dates | departures section |
+
+**No phone numbers on the page, by choice.** The brochure cover carries two numbers; they're left off so every enquiry goes through the form.
+
+## Before launch
+
+- **Reviews:** three real reviews from Himachal travellers (name, city, month).
+- **Rating:** confirm that 4.5/5 from 1,685 reviews covers Himachal too.
+- **Colours:** pick palette A, B or C below (A is applied).
+- **Address:** the subdomain (himachal.glabol.com is assumed; the Glabol CRM already accepts it) and the GitHub repo to publish from.
+- **Sheet email alerts:** the shared Apps Script's subject line says "New Kashmir lead" for every lead. Update it to name the destination (a one-line change, then Deploy → Manage deployments → New version).
+- Then delete the `noindex` line and the draft note, run `python3 tools/build-zip.py` until it builds, and take screenshots at 390, 820, 1280, 1440 and 1920px.
 
 ## Colours (palettes)
 
@@ -58,24 +67,26 @@ python3 tools/palette.py palettes/himachal-b.json           # apply: writes pale
 
 ## 2. Photos
 
-Drop them into `images/` under these names. Until a photo exists, its slot shows a block in the palette's colours, labelled with the file name.
-
-| File | What | Size |
+| File | Source | Used for |
 |---|---|---|
-| `hero.jpg` | Himachal landscape, calm sky or snow on the left (the headline sits there) | landscape, about 2000px wide, under 350 KB |
-| `hero-card.jpg` | a Glabol group photo for the top of the form | 800 × 360 |
-| `avatar-1.jpg` … `avatar-3.jpg` | three traveller faces | 80 × 80 |
-| `day-1.jpg` … `day-7.jpg` | one photo per day card (rename or add cards to match the itinerary) | 800 × 600 |
-| `mood-1.jpg` … `mood-6.jpg` | six real group moments for the dark photo grid, each with a one-line caption | 1024 wide for mood-1, about 800 for the rest |
-| `final.jpg` | a group photo for the final section and the thank-you page | 960 × 922 |
+| `hero.jpg` | Glabol's photo for this tour on glabol.com (snow in Lahaul, beyond the Atal Tunnel) | Hero background (the page mirrors it, so the sky sits behind the headline) |
+| `hero-card.jpg` | Your group by the river | Top of the enquiry card |
+| `avatar-1.jpg` … `avatar-3.jpg` | Faces cropped from the same group photo | Hero rating line |
+| `day-1.jpg` … `day-6.jpg` | Wikimedia Commons: Dharamshala cricket stadium, McLeodganj, paragliding at Bir, rafting on the Beas, Solang Valley, Manikaran bridge | Itinerary days 1–6 |
+| `day-7.jpg` | Glabol group with flags in the snow, from the brochure (page 11) | Itinerary day 7 |
+| `mood-1.jpg`, `mood-3.jpg`, `mood-4.jpg` | Your traveller photos (deck, orchard, snow) | Photo grid |
+| `mood-2.jpg`, `mood-5.jpg`, `mood-6.jpg` | Glabol groups from the brochure: the cover group, rafting (page 13), snow suits (page 11) | Photo grid |
+| `final.jpg` | Your group by the river (second shot) | Final section and the thank-you page |
 
-Resize and compress with `tools/img.py` (uses macOS `sips`):
+**Credits are required.** The Commons photos are CC BY / CC BY-SA: free for commercial use, but only with the credit line in the page footer. Keep that line, or replace the photos with your own and delete it.
+
+**Swapping a photo.** Keep the filename and use `tools/img.py` (uses macOS `sips`) to resize, crop and compress:
 
 ```bash
 python3 tools/img.py ~/Desktop/new.jpg images/day-3.jpg 800 58
 ```
 
-Free-licensed photos (e.g. Wikimedia Commons) need a credit line in the footer, as on the Kashmir page.
+Aim for under 350 KB for `hero.jpg` and under 200 KB for the others.
 
 ## 3. Leads go to a Google Sheet
 

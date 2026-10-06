@@ -32,7 +32,7 @@ todo = [(name, n, line.strip()) for name in PAGES + ASSETS
 if todo:
     for name, n, line in todo:
         print(f"  {name}:{n}: {line[:110]}")
-    sys.exit(f"Not built: {len(todo)} lines still say TBC. Fill them in from the brochure, then run this again.")
+    sys.exit(f"Not built: {len(todo)} lines still say TBC. Fill them in, then run this again.")
 
 files = PAGES + ASSETS + [".htaccess"]
 files += [f"images/{p.name}" for p in sorted((ROOT / "images").iterdir()) if p.is_file() and not p.name.startswith(".")]
