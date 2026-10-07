@@ -89,7 +89,7 @@ Aim for under 350 KB for `hero.jpg` and under 200 KB for the others.
 
 ## 3. Leads go to a Google Sheet
 
-Himachal uses the same Google Sheet and Apps Script as Kashmir (the same `FORM_ENDPOINT`). The "Landing page" column shows which page a lead came from. Every enquiry becomes a row in the sheet straight away, and the sheet owner gets an email alert with a link to message the lead on WhatsApp. The thank-you page then asks 3 qualifying questions, and each answer is added to the same row. The sheet columns are:
+Himachal has its own sheet, **Himachal Landing Page Leads Glabol India**, with its own copy of `tools/google-sheet-leads.gs`; its web app URL is `FORM_ENDPOINT` in `site.js`. Leads from before 7 Oct 2026 went to the Kashmir sheet (filter its "Landing page" column for himachal). The CRM is separate: the page posts each lead to it directly, never through the sheet. Every enquiry becomes a row in the sheet straight away, and the sheet owner gets an email alert with a link to message the lead on WhatsApp. The thank-you page then asks 3 qualifying questions, and each answer is added to the same row. The sheet columns are:
 
 | Timestamp | Name | Phone | Travel month | Travellers | Lead quality | Budget fit | Booking timeline | Best time to call | Source | Medium | Campaign ID | Adset ID | Ad ID | Keyword | GCLID | Landing page | Form | Lead ID |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
