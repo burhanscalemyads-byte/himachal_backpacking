@@ -1,12 +1,13 @@
 /** @OnlyCurrentDoc */
 /*
- * Glabol landing pages (Kashmir, Himachal and the next ones) → one Google Sheet
+ * Glabol landing page → Google Sheet. Each destination page can have its own sheet with its
+ * own copy of this script (Himachal: "Himachal Landing Page Leads Glabol India").
  * Every enquiry becomes a row in the sheet, and you get an email alert for each one.
  * The thank-you page then asks 3 qualifying questions; the answers and a lead quality
  * (Hot / Warm / Cold) are added to the same row.
  *
  * ONE-TIME SETUP (about 5 minutes)
- *  1. Open sheets.new and name the sheet "Glabol Kashmir Leads".
+ *  1. Open the destination's leads sheet (or sheets.new, named e.g. "Himachal Landing Page Leads Glabol India").
  *  2. Extensions → Apps Script. Delete the sample code, paste this whole file, click Save.
  *  3. Pick "setup" in the function list at the top and click Run.
  *     Google asks for permission: Review permissions → your account → Advanced →
@@ -15,7 +16,7 @@
  *  4. Deploy → New deployment → gear icon → Web app.
  *       Execute as: Me        Who has access: Anyone
  *     Click Deploy and copy the Web app URL (it ends in /exec).
- *  5. That URL goes into FORM_ENDPOINT at the top of site.js.
+ *  5. That URL goes into FORM_ENDPOINT at the top of that destination's site.js.
  *
  * CHANGING THIS SCRIPT LATER: paste the new version, Save, then Deploy → Manage deployments →
  * pencil icon → Version: "New version" → Deploy. The web app URL stays the same.
@@ -154,7 +155,7 @@ function testLead() {
   doPost({ parameter: {
     name: "Test lead (delete me)", phone: "+919876543210", month: "Nov 2026", group_size: "2",
     source: "google", medium: "cpc", campaign_id: "1234567890", adset_id: "2345678901", ad_id: "3456789012",
-    keyword: "kashmir backpacking trip", form_location: "hero", landing_url: "https://kashmir.glabol.com/",
+    keyword: "himachal backpacking trip", form_location: "hero", landing_url: "https://himachal.glabol.com/",
     lead_id: "00000000-0000-4000-8000-000000000000",
   } });
 }
